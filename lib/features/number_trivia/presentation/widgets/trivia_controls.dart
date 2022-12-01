@@ -39,18 +39,20 @@ class _TriviaControlsState extends State<TriviaControls> {
           children: [
             Expanded(
               child: ElevatedButton(
-                child: const Text('Search'),
+                key: const Key('search-trivia'),
                 onPressed: addConcrete,
+                child: const Text('Search'),
               ),
             ),
             const SizedBox(width: 10),
             Expanded(
               child: ElevatedButton(
+                key: const Key('get-random-trivia'),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.grey.shade500,
+                  backgroundColor: Colors.grey.shade500,
                 ),
-                child: const Text('Get random trivia'),
                 onPressed: addRandom,
+                child: const Text('Get random trivia'),
               ),
             ),
           ],

@@ -10,7 +10,9 @@ class LoadingWidget extends StatelessWidget {
     return SizedBox(
       height: MediaQuery.of(context).size.height / 3,
       child: const Center(
-        child: CircularProgressIndicator(),
+        child: CircularProgressIndicator(
+          key: Key('progress-indicator'),
+        ),
       ),
     );
   }

@@ -9,18 +9,23 @@ class NumberTriviaPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => serviceLocator<NumberTriviaBloc>(),
+      child: const NumberTriviaBodyPage(),
+    );
+  }
+}
+
+class NumberTriviaBodyPage extends StatelessWidget {
+  const NumberTriviaBodyPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Center(child: Text('Number Trivia Generator')),
       ),
-      body: buildBody(context),
-    );
-  }
-
-  BlocProvider<NumberTriviaBloc> buildBody(BuildContext context) {
-    return BlocProvider(
-      create: (_) => serviceLocator<NumberTriviaBloc>(),
-      child: Center(
+      body: Center(
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
@@ -31,7 +36,7 @@ class NumberTriviaPage extends StatelessWidget {
                   if (state is Empty) {
                     return const MessageDisplay(message: 'Start searching');
                   } else if (state is Loading) {
-                    return const LoadingWidget();
+                    return const LoadingWidget(key: Key('loading-widget'),);
                   } else if (state is Loaded) {
                     return TriviaDisplay(numberTrivia: state.trivia);
                   } else if (state is Error) {
