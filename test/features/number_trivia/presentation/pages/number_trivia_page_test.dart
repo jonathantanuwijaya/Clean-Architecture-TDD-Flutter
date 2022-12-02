@@ -22,79 +22,148 @@ void main() {
     bloc = MockNumberTriviaBloc();
   });
 
-  testWidgets('Title is displayed', (tester) async {
-    await tester.pumpWidget(createWidgetUnderTestWithEmptyState(bloc));
-    expect(find.text('Number Trivia Generator'), findsOneWidget);
+  group('Widget', () {
+    testWidgets('Title is displayed', (tester) async {
+      when(() => bloc.state).thenReturn(Empty());
+      await tester.pumpWidget(createWidgetUnderTest(bloc));
+      expect(find.text('Number Trivia Generator'), findsOneWidget);
+    });
+
+    testWidgets('Get Random Button is displayed', (tester) async {
+      when(() => bloc.state).thenReturn(Empty());
+      await tester.pumpWidget(createWidgetUnderTest(bloc));
+      expect(find.byKey(kRandomTrivia), findsOneWidget);
+    });
+
+    testWidgets('Search Button is displayed', (tester) async {
+      when(() => bloc.state).thenReturn(Empty());
+      await tester.pumpWidget(createWidgetUnderTest(bloc));
+      expect(find.byKey(kConcreteTrivia), findsOneWidget);
+    });
+    testWidgets('Start Search Text is displayed', (tester) async {
+      when(() => bloc.state).thenReturn(Empty());
+      await tester.pumpWidget(createWidgetUnderTest(bloc));
+      expect(find.text('Start searching'), findsOneWidget);
+    });
+    testWidgets('Loading Widget should appear when loading', (tester) async {
+      await tester.pumpWidget(createWidgetUnderTestWithLoadingState(bloc));
+      expect(find.byKey(kLoadingWidget), findsOneWidget);
+    });
+    testWidgets('Loading indicator should appear when loading', (tester) async {
+      await tester.pumpWidget(createWidgetUnderTestWithLoadingState(bloc));
+      expect(find.byKey(kProgressIndicator), findsOneWidget);
+    });
+    testWidgets('Error Message should appear when error Occurred',
+        (tester) async {
+      await tester.pumpWidget(createWidgetUnderTestWithErrorState(bloc));
+      expect(find.text(errorMessage), findsOneWidget);
+    });
   });
 
-  testWidgets('Get Random Button is displayed', (tester) async {
-    await tester.pumpWidget(createWidgetUnderTestWithEmptyState(bloc));
-    expect(find.byKey(const Key('get-random-trivia')), findsOneWidget);
-  });
+  group('widget with mock interaction', () {
+    testWidgets(
+        'Loading indicator should displayed while waiting for Random Number Trivia',
+        (tester) async {
+      whenListen(bloc, Stream.fromIterable([Empty(), Loading()]));
+      when(() => bloc.state).thenReturn(Empty());
+      await tester.pumpWidget(createWidgetUnderTest(bloc));
+      await tester.tap(find.byKey(kRandomTrivia));
+      await tester.pump();
+      expect(find.byKey(kProgressIndicator), findsOneWidget);
+      verify(() => bloc.add(GetTriviaForRandomNumber())).called(1);
+    });
 
-  testWidgets('Search Button is displayed', (tester) async {
-    await tester.pumpWidget(createWidgetUnderTestWithEmptyState(bloc));
-    expect(find.byKey(const Key('search-trivia')), findsOneWidget);
-  });
-  testWidgets('Start Search Text is displayed', (tester) async {
-    await tester.pumpWidget(createWidgetUnderTestWithEmptyState(bloc));
-    expect(find.text('Start searching'), findsOneWidget);
-  });
-  testWidgets('Loading Widget should appear when loading', (tester) async {
-    await tester.pumpWidget(createWidgetUnderTestWithLoadingState(bloc));
-    expect(find.byKey(const Key('loading-widget')), findsOneWidget);
-  });
-  testWidgets('Loading indicator should appear when loading', (tester) async {
-    await tester.pumpWidget(createWidgetUnderTestWithLoadingState(bloc));
-    expect(find.byKey(const Key('progress-indicator')), findsOneWidget);
-  });
-  testWidgets('Error Message should appear when error Occurred',
-      (tester) async {
-    await tester.pumpWidget(createWidgetUnderTestWithErrorState(bloc));
-    expect(find.text(errorMessage), findsOneWidget);
-  });
+    testWidgets(
+        'Loading indicator should displayed while waiting for Concrete Number Trivia',
+        (tester) async {
+      whenListen(bloc, Stream.fromIterable([Empty(), Loading()]));
+      when(() => bloc.state).thenReturn(Empty());
+      await tester.pumpWidget(createWidgetUnderTest(bloc));
+      await tester.enterText(find.byType(TextField), tTriviaNumber.toString());
+      await tester.tap(find.byKey(kConcreteTrivia));
+      expect(find.byKey(kProgressIndicator), findsOneWidget);
+      verify(() =>
+              bloc.add(const GetTriviaForConcreteNumber(tTriviaNumberString)))
+          .called(1);
+    });
 
-  testWidgets(
-      'Loading indicator should displayed while waiting for Random Number Trivia',
-      (tester) async {
-    whenListen(bloc, Stream.fromIterable([Empty(), Loading()]));
-    await tester.pumpWidget(createWidgetUnderTestWithEmptyState(bloc));
-    await tester.tap(find.byKey(const Key('get-random-trivia')));
-    await tester.pump();
-    expect(find.byKey(const Key('progress-indicator')), findsOneWidget);
-    verify(() => bloc.add(GetTriviaForRandomNumber())).called(1);
-  });
+    testWidgets(
+        'Number Trivia should displayed when getRandomTriviaNumber success',
+        (tester) async {
+      whenListen(
+        bloc,
+        Stream.fromIterable(
+          [Empty(), Loading(), const Loaded(trivia: tNumberTrivia)],
+        ),
+      );
+      when(() => bloc.state).thenReturn(Empty());
+      await tester.pumpWidget(createWidgetUnderTest(bloc));
+      await tester.tap(find.byKey(kRandomTrivia));
+      when(() => bloc.state).thenReturn(Loading());
+      when(() => bloc.state).thenReturn(const Loaded(trivia: tNumberTrivia));
+      await tester.pumpAndSettle();
+      expect(find.text(tTriviaText), findsOneWidget);
+      verify(() => bloc.add(GetTriviaForRandomNumber())).called(1);
+    });
 
-  testWidgets(
-      'Loading indicator should displayed while waiting for Concrete Number Trivia',
-      (tester) async {
-    whenListen(bloc, Stream.fromIterable([Empty(), Loading()]));
-    await tester.pumpWidget(createWidgetUnderTestWithEmptyState(bloc));
-    await tester.enterText(find.byType(TextField), tTriviaNumber.toString());
-    await tester.tap(find.byKey(const Key('search-trivia')));
-    expect(find.byKey(const Key('progress-indicator')), findsOneWidget);
-    verify(() => bloc.add(GetTriviaForConcreteNumber(tTriviaNumber.toString())))
-        .called(1);
-  });
+    testWidgets(
+        'Number Trivia should displayed when searchTriviaNumber success',
+        (tester) async {
+      whenListen(
+        bloc,
+        Stream.fromIterable(
+          [Empty(), Loading(), const Loaded(trivia: tNumberTrivia)],
+        ),
+      );
+      when(() => bloc.state).thenReturn(Empty());
+      await tester.pumpWidget(createWidgetUnderTest(bloc));
+      await tester.enterText(find.byType(TextField), tTriviaNumberString);
+      await tester.tap(find.byKey(kConcreteTrivia));
+      when(() => bloc.state).thenReturn(Loading());
+      when(() => bloc.state).thenReturn(const Loaded(trivia: tNumberTrivia));
+      await tester.pumpAndSettle();
+      expect(find.text(tTriviaText), findsOneWidget);
+      verify(() =>
+              bloc.add(const GetTriviaForConcreteNumber(tTriviaNumberString)))
+          .called(1);
+    });
 
-  testWidgets(
-      'Number Trivia should displayed when getRandomTriviaNumber success',
-      (tester) async {
-    await tester.pumpWidget(createWidgetUnderTestWithLoadedState(bloc));
-    await tester.tap(find.byKey(const Key('get-random-trivia')));
-    await tester.pumpAndSettle();
-    expect(find.text(tTriviaText), findsOneWidget);
-    verify(() => bloc.add(GetTriviaForRandomNumber())).called(1);
-  });
-
-  testWidgets('Number Trivia should displayed when searchTriviaNumber success',
-      (tester) async {
-    await tester.pumpWidget(createWidgetUnderTestWithLoadedState(bloc));
-    await tester.enterText(find.byType(TextField), tTriviaNumber.toString());
-    await tester.tap(find.byKey(const Key('search-trivia')));
-    await tester.pumpAndSettle();
-    expect(find.text(tTriviaText), findsOneWidget);
-    verify(() => bloc.add(GetTriviaForConcreteNumber(tTriviaNumber.toString())))
-        .called(1);
+    testWidgets('Error should displayed when getRandomTriviaNumber failed',
+        (tester) async {
+      whenListen(
+        bloc,
+        Stream.fromIterable(
+          [Empty(), Loading(), const Error(message: errorMessage)],
+        ),
+      );
+      when(() => bloc.state).thenReturn(Empty());
+      await tester.pumpWidget(createWidgetUnderTest(bloc));
+      await tester.tap(find.byKey(kRandomTrivia));
+      when(() => bloc.state).thenReturn(Loading());
+      when(() => bloc.state).thenReturn(const Error(message: errorMessage));
+      await tester.pumpAndSettle();
+      expect(find.text(errorMessage), findsOneWidget);
+      verify(() => bloc.add(GetTriviaForRandomNumber())).called(1);
+    });
+    testWidgets('Error should displayed when searchTriviaNumber failed',
+        (tester) async {
+      whenListen(
+        bloc,
+        Stream.fromIterable(
+          [Empty(), Loading(), const Error(message: errorMessage)],
+        ),
+      );
+      when(() => bloc.state).thenReturn(Empty());
+      await tester.pumpWidget(createWidgetUnderTest(bloc));
+      await tester.enterText(find.byType(TextField), tTriviaNumberString);
+      await tester.tap(find.byKey(kConcreteTrivia));
+      when(() => bloc.state).thenReturn(Loading());
+      when(() => bloc.state).thenReturn(const Error(message: errorMessage));
+      await tester.pumpAndSettle();
+      expect(find.text(errorMessage), findsOneWidget);
+      verify(() =>
+              bloc.add(const GetTriviaForConcreteNumber(tTriviaNumberString)))
+          .called(1);
+    });
   });
 }

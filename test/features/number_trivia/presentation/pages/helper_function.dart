@@ -13,11 +13,6 @@ Widget createWidgetUnderTestWithLoadingState(NumberTriviaBloc bloc) {
   return createWidgetUnderTest(bloc);
 }
 
-Widget createWidgetUnderTestWithEmptyState(NumberTriviaBloc bloc) {
-  when(() => bloc.state).thenReturn(Empty());
-  return createWidgetUnderTest(bloc);
-}
-
 Widget createWidgetUnderTestWithErrorState(NumberTriviaBloc bloc) {
   when(() => bloc.state).thenReturn(const Error(message: errorMessage));
   return createWidgetUnderTest(bloc);
