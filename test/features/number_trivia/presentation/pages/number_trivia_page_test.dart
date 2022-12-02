@@ -22,7 +22,7 @@ void main() {
     bloc = MockNumberTriviaBloc();
   });
 
-  group('Widget', () {
+  group('Static Widget', () {
     testWidgets('Title is displayed', (tester) async {
       when(() => bloc.state).thenReturn(Empty());
       await tester.pumpWidget(createWidgetUnderTest(bloc));
@@ -60,7 +60,7 @@ void main() {
     });
   });
 
-  group('widget with mock interaction', () {
+  group('Widget with mock interaction', () {
     testWidgets(
         'Loading indicator should displayed while waiting for Random Number Trivia',
         (tester) async {
