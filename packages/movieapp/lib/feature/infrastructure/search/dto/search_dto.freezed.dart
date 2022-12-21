@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'search_dto.dart';
 
@@ -12,34 +12,11 @@ part of 'search_dto.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 SearchMovieDto _$SearchMovieDtoFromJson(Map<String, dynamic> json) {
   return _SearchMovieDto.fromJson(json);
 }
-
-/// @nodoc
-class _$SearchMovieDtoTearOff {
-  const _$SearchMovieDtoTearOff();
-
-  _SearchMovieDto call(
-      {required String artistName,
-      required String artworkUrl100,
-      required String longDescription}) {
-    return _SearchMovieDto(
-      artistName: artistName,
-      artworkUrl100: artworkUrl100,
-      longDescription: longDescription,
-    );
-  }
-
-  SearchMovieDto fromJson(Map<String, Object?> json) {
-    return SearchMovieDto.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $SearchMovieDto = _$SearchMovieDtoTearOff();
 
 /// @nodoc
 mixin _$SearchMovieDto {
@@ -57,79 +34,81 @@ mixin _$SearchMovieDto {
 abstract class $SearchMovieDtoCopyWith<$Res> {
   factory $SearchMovieDtoCopyWith(
           SearchMovieDto value, $Res Function(SearchMovieDto) then) =
-      _$SearchMovieDtoCopyWithImpl<$Res>;
+      _$SearchMovieDtoCopyWithImpl<$Res, SearchMovieDto>;
+  @useResult
   $Res call({String artistName, String artworkUrl100, String longDescription});
 }
 
 /// @nodoc
-class _$SearchMovieDtoCopyWithImpl<$Res>
+class _$SearchMovieDtoCopyWithImpl<$Res, $Val extends SearchMovieDto>
     implements $SearchMovieDtoCopyWith<$Res> {
   _$SearchMovieDtoCopyWithImpl(this._value, this._then);
 
-  final SearchMovieDto _value;
   // ignore: unused_field
-  final $Res Function(SearchMovieDto) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? artistName = freezed,
-    Object? artworkUrl100 = freezed,
-    Object? longDescription = freezed,
+    Object? artistName = null,
+    Object? artworkUrl100 = null,
+    Object? longDescription = null,
   }) {
     return _then(_value.copyWith(
-      artistName: artistName == freezed
+      artistName: null == artistName
           ? _value.artistName
           : artistName // ignore: cast_nullable_to_non_nullable
               as String,
-      artworkUrl100: artworkUrl100 == freezed
+      artworkUrl100: null == artworkUrl100
           ? _value.artworkUrl100
           : artworkUrl100 // ignore: cast_nullable_to_non_nullable
               as String,
-      longDescription: longDescription == freezed
+      longDescription: null == longDescription
           ? _value.longDescription
           : longDescription // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$SearchMovieDtoCopyWith<$Res>
+abstract class _$$_SearchMovieDtoCopyWith<$Res>
     implements $SearchMovieDtoCopyWith<$Res> {
-  factory _$SearchMovieDtoCopyWith(
-          _SearchMovieDto value, $Res Function(_SearchMovieDto) then) =
-      __$SearchMovieDtoCopyWithImpl<$Res>;
+  factory _$$_SearchMovieDtoCopyWith(
+          _$_SearchMovieDto value, $Res Function(_$_SearchMovieDto) then) =
+      __$$_SearchMovieDtoCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String artistName, String artworkUrl100, String longDescription});
 }
 
 /// @nodoc
-class __$SearchMovieDtoCopyWithImpl<$Res>
-    extends _$SearchMovieDtoCopyWithImpl<$Res>
-    implements _$SearchMovieDtoCopyWith<$Res> {
-  __$SearchMovieDtoCopyWithImpl(
-      _SearchMovieDto _value, $Res Function(_SearchMovieDto) _then)
-      : super(_value, (v) => _then(v as _SearchMovieDto));
+class __$$_SearchMovieDtoCopyWithImpl<$Res>
+    extends _$SearchMovieDtoCopyWithImpl<$Res, _$_SearchMovieDto>
+    implements _$$_SearchMovieDtoCopyWith<$Res> {
+  __$$_SearchMovieDtoCopyWithImpl(
+      _$_SearchMovieDto _value, $Res Function(_$_SearchMovieDto) _then)
+      : super(_value, _then);
 
-  @override
-  _SearchMovieDto get _value => super._value as _SearchMovieDto;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? artistName = freezed,
-    Object? artworkUrl100 = freezed,
-    Object? longDescription = freezed,
+    Object? artistName = null,
+    Object? artworkUrl100 = null,
+    Object? longDescription = null,
   }) {
-    return _then(_SearchMovieDto(
-      artistName: artistName == freezed
+    return _then(_$_SearchMovieDto(
+      artistName: null == artistName
           ? _value.artistName
           : artistName // ignore: cast_nullable_to_non_nullable
               as String,
-      artworkUrl100: artworkUrl100 == freezed
+      artworkUrl100: null == artworkUrl100
           ? _value.artworkUrl100
           : artworkUrl100 // ignore: cast_nullable_to_non_nullable
               as String,
-      longDescription: longDescription == freezed
+      longDescription: null == longDescription
           ? _value.longDescription
           : longDescription // ignore: cast_nullable_to_non_nullable
               as String,
@@ -165,38 +144,39 @@ class _$_SearchMovieDto extends _SearchMovieDto {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SearchMovieDto &&
-            const DeepCollectionEquality()
-                .equals(other.artistName, artistName) &&
-            const DeepCollectionEquality()
-                .equals(other.artworkUrl100, artworkUrl100) &&
-            const DeepCollectionEquality()
-                .equals(other.longDescription, longDescription));
+            other is _$_SearchMovieDto &&
+            (identical(other.artistName, artistName) ||
+                other.artistName == artistName) &&
+            (identical(other.artworkUrl100, artworkUrl100) ||
+                other.artworkUrl100 == artworkUrl100) &&
+            (identical(other.longDescription, longDescription) ||
+                other.longDescription == longDescription));
   }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(artistName),
-      const DeepCollectionEquality().hash(artworkUrl100),
-      const DeepCollectionEquality().hash(longDescription));
 
   @JsonKey(ignore: true)
   @override
-  _$SearchMovieDtoCopyWith<_SearchMovieDto> get copyWith =>
-      __$SearchMovieDtoCopyWithImpl<_SearchMovieDto>(this, _$identity);
+  int get hashCode =>
+      Object.hash(runtimeType, artistName, artworkUrl100, longDescription);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SearchMovieDtoCopyWith<_$_SearchMovieDto> get copyWith =>
+      __$$_SearchMovieDtoCopyWithImpl<_$_SearchMovieDto>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SearchMovieDtoToJson(this);
+    return _$$_SearchMovieDtoToJson(
+      this,
+    );
   }
 }
 
 abstract class _SearchMovieDto extends SearchMovieDto {
   const factory _SearchMovieDto(
-      {required String artistName,
-      required String artworkUrl100,
-      required String longDescription}) = _$_SearchMovieDto;
+      {required final String artistName,
+      required final String artworkUrl100,
+      required final String longDescription}) = _$_SearchMovieDto;
   const _SearchMovieDto._() : super._();
 
   factory _SearchMovieDto.fromJson(Map<String, dynamic> json) =
@@ -210,6 +190,6 @@ abstract class _SearchMovieDto extends SearchMovieDto {
   String get longDescription;
   @override
   @JsonKey(ignore: true)
-  _$SearchMovieDtoCopyWith<_SearchMovieDto> get copyWith =>
+  _$$_SearchMovieDtoCopyWith<_$_SearchMovieDto> get copyWith =>
       throw _privateConstructorUsedError;
 }

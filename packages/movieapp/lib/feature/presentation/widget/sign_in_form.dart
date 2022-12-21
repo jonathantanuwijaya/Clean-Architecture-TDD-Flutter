@@ -3,13 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movieapp/feature/application/auth/auth_bloc.dart';
 import 'package:movieapp/feature/presentation/home/home_page.dart';
 
+final _formKey = GlobalKey<FormState>();
+
 class SignInForm extends StatelessWidget {
   const SignInForm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
-
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         state.authFailureOrSucessOption.fold(

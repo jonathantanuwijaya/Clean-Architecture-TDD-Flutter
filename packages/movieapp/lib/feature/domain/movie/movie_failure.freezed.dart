@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'movie_failure.dart';
 
@@ -12,19 +12,7 @@ part of 'movie_failure.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$MovieFailureTearOff {
-  const _$MovieFailureTearOff();
-
-  _Unexpected unexpected() {
-    return const _Unexpected();
-  }
-}
-
-/// @nodoc
-const $MovieFailure = _$MovieFailureTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$MovieFailure {
@@ -35,7 +23,7 @@ mixin _$MovieFailure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? unexpected,
+    TResult? Function()? unexpected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -51,7 +39,7 @@ mixin _$MovieFailure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Unexpected value)? unexpected,
+    TResult? Function(_Unexpected value)? unexpected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -66,34 +54,34 @@ mixin _$MovieFailure {
 abstract class $MovieFailureCopyWith<$Res> {
   factory $MovieFailureCopyWith(
           MovieFailure value, $Res Function(MovieFailure) then) =
-      _$MovieFailureCopyWithImpl<$Res>;
+      _$MovieFailureCopyWithImpl<$Res, MovieFailure>;
 }
 
 /// @nodoc
-class _$MovieFailureCopyWithImpl<$Res> implements $MovieFailureCopyWith<$Res> {
+class _$MovieFailureCopyWithImpl<$Res, $Val extends MovieFailure>
+    implements $MovieFailureCopyWith<$Res> {
   _$MovieFailureCopyWithImpl(this._value, this._then);
 
-  final MovieFailure _value;
   // ignore: unused_field
-  final $Res Function(MovieFailure) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$UnexpectedCopyWith<$Res> {
-  factory _$UnexpectedCopyWith(
-          _Unexpected value, $Res Function(_Unexpected) then) =
-      __$UnexpectedCopyWithImpl<$Res>;
+abstract class _$$_UnexpectedCopyWith<$Res> {
+  factory _$$_UnexpectedCopyWith(
+          _$_Unexpected value, $Res Function(_$_Unexpected) then) =
+      __$$_UnexpectedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$UnexpectedCopyWithImpl<$Res> extends _$MovieFailureCopyWithImpl<$Res>
-    implements _$UnexpectedCopyWith<$Res> {
-  __$UnexpectedCopyWithImpl(
-      _Unexpected _value, $Res Function(_Unexpected) _then)
-      : super(_value, (v) => _then(v as _Unexpected));
-
-  @override
-  _Unexpected get _value => super._value as _Unexpected;
+class __$$_UnexpectedCopyWithImpl<$Res>
+    extends _$MovieFailureCopyWithImpl<$Res, _$_Unexpected>
+    implements _$$_UnexpectedCopyWith<$Res> {
+  __$$_UnexpectedCopyWithImpl(
+      _$_Unexpected _value, $Res Function(_$_Unexpected) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -109,7 +97,7 @@ class _$_Unexpected implements _Unexpected {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Unexpected);
+        (other.runtimeType == runtimeType && other is _$_Unexpected);
   }
 
   @override
@@ -126,7 +114,7 @@ class _$_Unexpected implements _Unexpected {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? unexpected,
+    TResult? Function()? unexpected,
   }) {
     return unexpected?.call();
   }
@@ -154,7 +142,7 @@ class _$_Unexpected implements _Unexpected {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Unexpected value)? unexpected,
+    TResult? Function(_Unexpected value)? unexpected,
   }) {
     return unexpected?.call(this);
   }
