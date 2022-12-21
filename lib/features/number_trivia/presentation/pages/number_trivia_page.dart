@@ -1,6 +1,7 @@
 import 'package:clean_arch_tdd/features/number_trivia/presentation/bloc/number_trivia_bloc.dart';
 import 'package:clean_arch_tdd/features/number_trivia/presentation/widgets/widgets.dart';
 import 'package:clean_arch_tdd/injection_container.dart';
+import 'package:clean_widget/clean_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movieapp/movieapp.dart';
@@ -48,14 +49,17 @@ class NumberTriviaBodyPage extends StatelessWidget {
                     return MessageDisplay(message: state.message);
                   }
                   return SizedBox(
-                    height: MediaQuery.of(context).size.height / 3,
+                    height: MediaQuery
+                        .of(context)
+                        .size
+                        .height / 3,
                     child: const Placeholder(),
                   );
                 },
               ),
               const SizedBox(height: 20),
               const TriviaControls(),
-              OutlinedButton(
+              CleanButton(
                   onPressed: () {
                     if (hasRegistered) {
                       setupAndRun();
@@ -66,7 +70,7 @@ class NumberTriviaBodyPage extends StatelessWidget {
                         MaterialPageRoute(
                             builder: (context) => const AppWidget()));
                   },
-                  child: Text('Go To Movie'))
+              ),
             ],
           ),
         ),
