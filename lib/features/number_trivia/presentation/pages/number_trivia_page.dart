@@ -3,6 +3,7 @@ import 'package:clean_arch_tdd/features/number_trivia/presentation/widgets/widge
 import 'package:clean_arch_tdd/injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movieapp/movieapp.dart';
 
 class NumberTriviaPage extends StatelessWidget {
   const NumberTriviaPage({Key? key}) : super(key: key);
@@ -21,6 +22,8 @@ class NumberTriviaBodyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// simple boolean value for test purpose
+    bool hasRegistered = true;
     return Scaffold(
       appBar: AppBar(
         title: const Center(child: Text('Number Trivia Generator')),
@@ -36,7 +39,9 @@ class NumberTriviaBodyPage extends StatelessWidget {
                   if (state is Empty) {
                     return const MessageDisplay(message: 'Start searching');
                   } else if (state is Loading) {
-                    return const LoadingWidget(key: Key('loading-widget'),);
+                    return const LoadingWidget(
+                      key: Key('loading-widget'),
+                    );
                   } else if (state is Loaded) {
                     return TriviaDisplay(numberTrivia: state.trivia);
                   } else if (state is Error) {
@@ -50,6 +55,18 @@ class NumberTriviaBodyPage extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               const TriviaControls(),
+              OutlinedButton(
+                  onPressed: () {
+                    if (hasRegistered) {
+                      setupAndRun();
+                      hasRegistered = false;
+                    }
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AppWidget()));
+                  },
+                  child: Text('Go To Movie'))
             ],
           ),
         ),
