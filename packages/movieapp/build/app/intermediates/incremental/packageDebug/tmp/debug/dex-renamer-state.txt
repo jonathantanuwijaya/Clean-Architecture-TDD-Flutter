@@ -1,0 +1,4 @@
+#Thu Apr 07 19:16:48 WIB 2022
+base.0=/Users/jonathan/Documents/FlutterProjects/OldProjects/Movie-App-DDD/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
