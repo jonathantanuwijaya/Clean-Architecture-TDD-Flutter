@@ -1,5 +1,5 @@
-
 import 'package:clean_arch_tdd/features/number_trivia/presentation/bloc/number_trivia_bloc.dart';
+import 'package:clean_arch_tdd/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
 
@@ -18,19 +18,20 @@ class _TriviaControlsState extends State<TriviaControls> {
 
   @override
   Widget build(BuildContext context) {
+    final i10n = S.of(context);
     return Column(
       children: [
         TextField(
           controller: controller,
           keyboardType: TextInputType.number,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
             border: OutlineInputBorder(),
-            hintText: 'Input a number',
+            hintText: i10n.hintNumber,
           ),
           onChanged: (value) {
             inputStr = value;
           },
-          onSubmitted:  (_) {
+          onSubmitted: (_) {
             addConcrete();
           },
         ),
@@ -41,7 +42,7 @@ class _TriviaControlsState extends State<TriviaControls> {
               child: ElevatedButton(
                 key: const Key('search-trivia'),
                 onPressed: addConcrete,
-                child: const Text('Search'),
+                child: Text(i10n.search),
               ),
             ),
             const SizedBox(width: 10),
@@ -52,7 +53,7 @@ class _TriviaControlsState extends State<TriviaControls> {
                   backgroundColor: Colors.grey.shade500,
                 ),
                 onPressed: addRandom,
-                child: const Text('Get random trivia'),
+                child: Text(i10n.getRandomTrivia),
               ),
             ),
           ],

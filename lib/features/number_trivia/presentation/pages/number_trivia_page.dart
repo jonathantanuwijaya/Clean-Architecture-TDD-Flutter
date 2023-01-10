@@ -1,5 +1,7 @@
+import 'package:clean_arch_tdd/features/change_language/change_language_cubit.dart';
 import 'package:clean_arch_tdd/features/number_trivia/presentation/bloc/number_trivia_bloc.dart';
 import 'package:clean_arch_tdd/features/number_trivia/presentation/widgets/widgets.dart';
+import 'package:clean_arch_tdd/generated/l10n.dart';
 import 'package:clean_arch_tdd/injection_container.dart';
 import 'package:clean_widget/clean_button.dart';
 import 'package:flutter/material.dart';
@@ -25,9 +27,30 @@ class NumberTriviaBodyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     /// simple boolean value for test purpose
     bool hasRegistered = true;
+    final i10n = S.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text('Number Trivia Generator')),
+        title: Center(child: Text(i10n.generatorTitle)),
+        actions: [
+          PopupMenuButton(itemBuilder: (context) {
+            return [
+              PopupMenuItem<int>(
+                value: 0,
+                child: Text(i10n.goToEng),
+              ),
+              PopupMenuItem<int>(
+                value: 1,
+                child: Text(i10n.goToID),
+              ),
+            ];
+          }, onSelected: (value) {
+            if (value == 0) {
+              context.read<ChangeLanguageCubit>().changeLanguage('en');
+            } else {
+              context.read<ChangeLanguageCubit>().changeLanguage('id');
+            }
+          }),
+        ],
       ),
       body: Center(
         child: Padding(
@@ -38,7 +61,7 @@ class NumberTriviaBodyPage extends StatelessWidget {
               BlocBuilder<NumberTriviaBloc, NumberTriviaState>(
                 builder: (context, state) {
                   if (state is Empty) {
-                    return const MessageDisplay(message: 'Start searching');
+                    return MessageDisplay(message: i10n.startSearch);
                   } else if (state is Loading) {
                     return const LoadingWidget(
                       key: Key('loading-widget'),
@@ -49,10 +72,7 @@ class NumberTriviaBodyPage extends StatelessWidget {
                     return MessageDisplay(message: state.message);
                   }
                   return SizedBox(
-                    height: MediaQuery
-                        .of(context)
-                        .size
-                        .height / 3,
+                    height: MediaQuery.of(context).size.height / 3,
                     child: const Placeholder(),
                   );
                 },
@@ -60,16 +80,16 @@ class NumberTriviaBodyPage extends StatelessWidget {
               const SizedBox(height: 20),
               const TriviaControls(),
               CleanButton(
-                  onPressed: () {
-                    if (hasRegistered) {
-                      setupAndRun();
-                      hasRegistered = false;
-                    }
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const AppWidget()));
-                  },
+                onPressed: () {
+                  if (hasRegistered) {
+                    setupAndRun();
+                    hasRegistered = false;
+                  }
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const AppWidget()));
+                },
               ),
             ],
           ),
